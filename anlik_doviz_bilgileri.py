@@ -93,3 +93,7 @@ response = model.generate_content(
 
 
 response.candidates[0].content.parts[0].text
+
+#AISprint
+
+“Google Cloud credits are provided for this project.”
