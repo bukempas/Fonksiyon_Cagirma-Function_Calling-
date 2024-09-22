@@ -1,5 +1,7 @@
 #Anlık döviz bilgilerine Gemini uzerinde ulaşım
 
+
+#Oncelikle Vertex AI için ilgili Python kutuphanelerini indiriyoruz
 import requests
 from vertexai.generative_models import (
     Content,
@@ -9,8 +11,10 @@ from vertexai.generative_models import (
     Tool,
 )
 
+#Gemini modellerinden istedigimizi seçebiliriz.
 model = GenerativeModel("gemini-1.5-flash-001")
 
+#anlik bilgileri alabilmemiz için fonksiyonu ve içinde gerekli parametreleri belirlemek gerekiyor
 get_exchange_rate_func = FunctionDeclaration(
     name="get_exchange_rate",
     description="Güncel döviz kur değerlerini öğrenmek",
@@ -37,6 +41,7 @@ get_exchange_rate_func = FunctionDeclaration(
   },
 )
 
+#ilgili fonksiyon Tool fonksiyonu içine entegre edilmeli
 exchange_rate_tool = Tool(
     function_declarations=[get_exchange_rate_func],
 )
@@ -55,11 +60,13 @@ for key, value in response.candidates[0].content.parts[0].function_call.args.ite
     params[key[9:]] = value
 params
 
+#REST API protokulune uygun verileri alabilecegimiz ilgili API seçilip belirtilmeli
 import requests
 url = f"https://api.frankfurter.app/{params['date']}"
 api_response = requests.get(url, params=params)
 api_response.text
 
+#API uzerinden alınan verileri Gemini uzerindeki istege cevap verebilir hale getiriyoruz
 response = model.generate_content(
     [
     Content(role="user", parts=[
