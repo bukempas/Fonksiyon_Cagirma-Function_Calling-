@@ -11,7 +11,7 @@ from vertexai.generative_models import (
     Tool,
 )
 
-#Gemini modellerinden istedigimizi seçebiliriz.
+#Gemini modellerinden istedigimizi seçebiliriz. Gemini-1.5-pro da seçilebilir.
 model = GenerativeModel("gemini-1.5-flash-001")
 
 #anlik bilgileri alabilmemiz için fonksiyonu ve içinde gerekli parametreleri belirlemek gerekiyor
