@@ -1,4 +1,4 @@
-#Anlık döviz bilgilerine Gemini uzerinde ulaşım
+#Anlık döviz bilgilerine Fucntion Calling kullanarak Gemini uzerinde ulaşım
 
 
 #Oncelikle Vertex AI için ilgili Python kutuphanelerini indiriyoruz
